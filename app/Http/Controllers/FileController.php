@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\File;
 
 class FileController extends Controller
@@ -28,8 +27,8 @@ class FileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required'],
-            'file' => ['required'],
+            'title' => 'required',
+            'file' => 'required|mimes:jpg,png|max:2048',
         ]);
 
         if($request->file()) {
@@ -39,25 +38,9 @@ class FileController extends Controller
 
         File::create([
             'title' => $request->title,
-            'name' => $fileName
+            'image' => $fileName
         ]);
 
         return redirect()->route('file.upload');
-//
-//        $request->validate([
-//            'file' => 'required|mimes:jpg,jpeg,png,csv,txt,xlx,xls,pdf|max:2048'
-//        ]);
-//
-//        $fileUpload = new File;
-//
-//        if ($request->file()) {
-//            $file_name = time() . '_' . $request->file->getClientOriginalName();
-//            $file_path = $request->file('file')->storeAs('uploads', $file_name, 'public');
-//
-//            $fileUpload->name = time() . '_' . $request->file->getClientOriginalName();
-//            $fileUpload->save();
-//
-//            return redirect()->route('file.upload');
-//        }
     }
 }

@@ -25,7 +25,7 @@ const submit = () => {
     </template>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <form name="createForm" @submit.prevent="submit">
@@ -44,7 +44,7 @@ const submit = () => {
                                     className="text-red-600"
                                     v-if="form.errors.title"
                                 >
-                                    {{ form.errors.file }}
+                                    {{ form.errors.title }}
                                 </span>
                             </div>
 
@@ -61,7 +61,7 @@ const submit = () => {
 
                                 <span
                                     className="text-red-600"
-                                    v-if="form.errors.title"
+                                    v-if="form.errors.file"
                                 >
                                     {{ form.errors.file }}
                                 </span>
@@ -90,7 +90,7 @@ const submit = () => {
                         </div>
                     </form>
 
-                    <h1>Uploaded File List:</h1>
+                    <h1 class="m-5">File Upload Lists</h1>
                     <table className="table-fixed w-full">
                         <thead>
                             <tr className="bg-gray-100">
@@ -108,7 +108,7 @@ const submit = () => {
                                     {{ file.title }}
                                 </td>
                                 <td className="border px-4 py-2">
-                                    <img :src="file.name" width="200" />
+                                    <img :src="file.image" width="200" />
                                 </td>
                             </tr>
                         </tbody>

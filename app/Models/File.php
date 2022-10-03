@@ -16,7 +16,8 @@ class File extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'name'
+        'title', 
+        'image'
     ];
 
     /**
@@ -24,7 +25,7 @@ class File extends Model
      *
      * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
-    protected function name(): Attribute
+    protected function image(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => url('storage/uploads/'.$value),
